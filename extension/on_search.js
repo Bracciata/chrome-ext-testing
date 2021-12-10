@@ -3,8 +3,6 @@ function getResults(){
     // Note: console.log calls in exectuedScripts show up in the pages stack trace.
     var searchBody = document.getElementById("search");
     var linkElements = searchBody.getElementsByTagName("a");
-    // TODO: Filter out where role = button
-    // TODO: Filter out where href begins with /search
     let relevantLinkElements = [];
     for( var linkElement of linkElements){
         let gContainer = linkElement.parentNode.parentNode.parentNode.parentNode;
