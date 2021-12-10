@@ -1,4 +1,3 @@
-const pa11y = require('pa11y');
 
 function getResults(){
     // Note: console.log calls in exectuedScripts show up in the pages stack trace.
@@ -8,19 +7,20 @@ function getResults(){
     // TODO: Filter out where href begins with /search
     let relevantLinkElements = [];
     for( var linkElement of linkElements){
-        if(!linkElement.hasAttribute('role') && !linkElement.getAttribute('href').startsWith('/search')){
+        let gContainer = linkElement.parentNode.parentNode.parentNode.parentNode;
+        if(!linkElement.hasAttribute('role') && !linkElement.getAttribute('href').startsWith('/search')&&!gContainer.firstChild.innerHTML.startsWith('Score:')){
             relevantLinkElements += [linkElement];
+            let score  = document.createElement("span")
+            score.innerHTML = 'Score: 70';
+            gContainer.insertBefore(score,gContainer.firstChild);
         }
     }
+    
     for(var linkElement of relevantLinkElements){
         scoreSearchResult(linkElement);
     }
 }
 function scoreSearchResult(linkElement){
-    pa11y(linkElement.href).then((results) => {
-        console.log(linkElement);
-        console.log(results);
-});
 }
 chrome.webRequest.onCompleted.addListener(function(details) {
     chrome.scripting.executeScript({
