@@ -1,0 +1,14 @@
+{
+  "name": "extension",
+  "version": "1.0.0",
+  "description": "",
+  "main": "on_search.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pa11y": "^6.1.1"
+  }
+}
